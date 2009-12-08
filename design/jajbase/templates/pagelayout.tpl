@@ -24,7 +24,7 @@
             
         <div id="main-top" style="position: top"></div>
 
-        <div class="shadow-container" style="width:980px;margin:0 auto; background: red">
+        <div class="shadow-container" style="width:980px;margin:0 auto;">
 
         <div class="bp-container" id="main">
         <div class="bp-span-32 last">
