@@ -2,10 +2,10 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 {def    
-    $column-count=30
-    $left-column-span=7
-    $right-column-span=10
-    $content-column-span=32|sub($left-column-span, $right-column-span)
+    $column-count=24
+    $left-column-span=5
+    $right-column-span=6
+    $content-column-span=$column-count|sub($left-column-span, $right-column-span)
 }
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{$site.http_equiv.Content-language|wash}" lang="{$site.http_equiv.Content-language|wash}">
@@ -22,60 +22,63 @@
 
 	<body id="content-node-{first_set( $module_result.node_id, 0 )}">
             
-        <div id="main-top" style="position: top"></div>
+        <div id="main-wrapper">
+            <div id="main-wrapper-top"></div>
 
-        <div class="shadow-container" style="width:980px;margin:0 auto;">
+            <div class="container" id="main">
 
-        <div class="bp-container" id="main">
-        <div class="bp-span-32 last">
-
-            <div id="header-container" class="span-32">
-                <div id="header">
-                    {cache-block}
-                    {def $pagedesign=fetch_alias(by_identifier,hash(attr_id,sitestyle_identifier))}
-                    {if $pagedesign.data_map.image.content.is_valid}
-                        <a href={"/"|ezurl}><img src={$pagedesign.data_map.image.content[original].full_path|ezroot} alt="{$pagedesign.data_map.image.content[original].text}" /></a>
-                    {/if}
-                    {undef $pagedesign}
-                    {/cache-block}
-                </div>
-            </div>
-            
-    		<div id="top-menu-container" class="bp-span-32">
-                <div class="bp-span-7">.</div>
-                <div class="bp-span-24">
-	    		{include uri=concat( 'design:menu/', ezini( 'SelectedMenu', 'TopMenu', 'menu.ini' ), '.tpl' )}
-                </div>
-                <div class="bp-span-1 bp-last">-</div>
-   		    </div>
-
-            <div id="page-container" class="bp-span-24">
-                <div id="left-column-container" class="bp-span-{$left-column-span}">
-                    Left column
-                </div>
-
-                <div id="content-column-container" class="bp-span-{$content-column-span}">
-	    	        {$module_result.content}
-                </div>
-                
-                <div id="right-column-container" class="bp-span-{$right-column-span} bp-last">
-                    Right column
-                </div>
-            </div>
-
-            <div id="footer-container" class="span-24">
-                <div id="footer">
-                    {cache-block}
+                <div id="header-container" class="span-{$column-count}">
+                    <div id="header">
+                        {cache-block}
                         {def $pagedesign=fetch_alias(by_identifier,hash(attr_id,sitestyle_identifier))}
-                        {attribute_view_gui attribute=$pagedesign.data_map.footer}
+                        {if $pagedesign.data_map.image.content.is_valid}
+                            <a href={"/"|ezurl}><img src={$pagedesign.data_map.image.content[original].full_path|ezroot} alt="{$pagedesign.data_map.image.content[original].text}" /></a>
+                        {/if}
                         {undef $pagedesign}
-                    {/cache-block}
-                </div>
-            </div>
-        </div>
-        </div>
-        </div>{* End of #main *}
+                        {/cache-block}
+                    </div>
+                </div>{* #header-container *}
+            
+        		<div id="top-menu-container" class="span-{$column-count}">
+                    <div class="span-19 prepend-5 last">
+    	    	    	{include uri=concat( 'design:menu/', ezini( 'SelectedMenu', 'TopMenu', 'menu.ini' ), '.tpl' ) class=""}
+                    </div>
+   	    	    </div>{* #top-menu-container *}
 
-        <div id="main-bottom"></div>  
+                <div id="page-container" class="span-{$column-count}">
+                    <div id="left-column-container" class="span-{$left-column-span}">
+                        Left column
+                        <div id="left-column-bottom">1</div>
+                    </div>
+
+                    <div id="content-column-container" class="span-{$content-column-span}">
+                        <div id="content-column">
+    	        	        {$module_result.content}
+                        </div>
+                    </div>
+                
+                    <div id="right-column-container" class="span-{$right-column-span} last">
+                        <div id="test">
+                        Right column
+                        </div>
+                    </div>
+
+                    <div id="page-container-bottom"></div>
+                </div>{* #page-container *}
+
+                <div id="footer-container" class="span-{$column-count}">
+                    <div id="footer">
+                        {cache-block}
+                            {def $pagedesign=fetch_alias(by_identifier,hash(attr_id,sitestyle_identifier))}
+                            {attribute_view_gui attribute=$pagedesign.data_map.footer}
+                            {undef $pagedesign}
+                        {/cache-block}
+                    </div>
+                </div>{* #footer-container *}
+
+            </div> {* #main *}
+            
+            <div id="main-wrapper-bottom"></div>
+        </div>{* #main-wrapper *}
 	</body>
 </html>

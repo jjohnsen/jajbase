@@ -17,7 +17,7 @@
 {/if}
 
 
-<div id="top-menu-{if $max_depth|gt(1)}flat{else}flat{/if}">
+<div id="top-menu-{if $max_depth|gt(1)}flat{else}flat{/if}" class="{$class}">
     <div id="top-menu-design">
 
     <h3 class="hide">{"Top menu"|i18n("design/base")}</h3>
