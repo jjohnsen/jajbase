@@ -16,8 +16,10 @@
 		<!--[if lt IE 8]>
       			<link rel="stylesheet" href={"stylesheets/blueprint/ie.css"|ezdesign} type="text/css" media="screen, projection">
         <![endif]-->
-        <link rel="stylesheet" href={"stylesheets/base.css"|ezdesign} type="text/css" media="screen, projection">
         <link rel="stylesheet" href={"stylesheets/site.css"|ezdesign} type="text/css" media="screen, projection">
+        <link rel="stylesheet" href={"stylesheets/base.css"|ezdesign} type="text/css" media="screen, projection">
+        <link rel="stylesheet" href={"stylesheets/content.css"|ezdesign} type="text/css" media="screen, projection">
+        {include uri='design:analytics.tpl'}
 	</head>
 
 	<body id="content-node-{first_set( $module_result.node_id, 0 )}">
@@ -26,16 +28,14 @@
             <div id="main-wrapper-top"></div>
 
             <div class="container" id="main">
-
+                {cache-block keys=$uri_string}
                 <div id="header-container" class="span-{$column-count}">
                     <div id="header">
-                        {cache-block}
                         {def $pagedesign=fetch_alias(by_identifier,hash(attr_id,sitestyle_identifier))}
                         {if $pagedesign.data_map.image.content.is_valid}
                             <a href={"/"|ezurl}><img src={$pagedesign.data_map.image.content[original].full_path|ezroot} alt="{$pagedesign.data_map.image.content[original].text}" /></a>
                         {/if}
                         {undef $pagedesign}
-                        {/cache-block}
                     </div>
                 </div>{* #header-container *}
             
@@ -47,10 +47,9 @@
 
                 <div id="page-container" class="span-{$column-count}">
                     <div id="left-column-container" class="span-{$left-column-span}">
-                        Left column
-                        <div id="left-column-bottom">1</div>
+                        {include uri=concat( 'design:menu/', ezini( 'SelectedMenu', 'LeftMenu', 'menu.ini' ), '.tpl' )}
                     </div>
-
+                {/cache-block}
                     <div id="content-column-container" class="span-{$content-column-span}">
                         <div id="content-column">
     	        	        {$module_result.content}
@@ -58,8 +57,8 @@
                     </div>
                 
                     <div id="right-column-container" class="span-{$right-column-span} last">
-                        <div id="test">
-                        Right column
+                        <div id="right-column">
+                            {tool_bar name=right view=full}
                         </div>
                     </div>
 
@@ -67,7 +66,8 @@
                 </div>{* #page-container *}
 
                 <div id="footer-container" class="span-{$column-count}">
-                    <div id="footer">
+                    <div id="footer-top"></div>
+                    <div id="footer" class="span-19 prepend-5 last">
                         {cache-block}
                             {def $pagedesign=fetch_alias(by_identifier,hash(attr_id,sitestyle_identifier))}
                             {attribute_view_gui attribute=$pagedesign.data_map.footer}
@@ -79,6 +79,9 @@
             </div> {* #main *}
             
             <div id="main-wrapper-bottom"></div>
+        <div id="byline" class="span-24 last">
+            Design: <a href="http://www.ideverkstedet.no" target="_blank">IDÉverkstedet</a> - Utvikling: <a href="http://www.hikt.no" target="_blank">Hålogaland ikt</a>
+        </div>
         </div>{* #main-wrapper *}
 	</body>
 </html>

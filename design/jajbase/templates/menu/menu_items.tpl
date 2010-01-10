@@ -1,6 +1,10 @@
 {set $depth=inc($depth)}
 <ul class="{concat( 'menu-level-', $depth)}">
     {foreach $items as $index => $item}
+        {if $item.object.state_identifier_array|contains('menu_display/hide')}
+            {continue}
+        {/if}
+        
         {def $li_class=array( concat( 'menu-level-', $depth) )}
         {def $a_class=array()}
 
@@ -15,9 +19,16 @@
         {/if}
 
         <li class="{$li_class|implode(" ")}">
-            <a href={$item.url_alias|ezurl} class="{$a_class|implode(" ")}">
-                <span>{$item.name|wash()}</span>
+            {def $url=$item.url_alias}
+            {if $item.object.state_identifier_array|contains('menu_display/display_only')}
+                {set $url='#'}
+                {set $a_class=$a_class|append("display_only")}
+            {/if}
+
+            <a href={$url|ezurl} class="{$a_class|implode(" ")}">
+                <span>{$item.name|wash()}{$item.object.state_identifier_array|contains('menu_display/hide')}</span>
             </a>
+            {undef $url}
             
             {if $depth|lt($max_depth)}
                 {def $menuitems=fetch( content, list, hash( parent_node_id, $item.node_id,

@@ -117,3 +117,72 @@ div.top-menu-center ul li {
     width: 100%;
     float: none;
 }
+
+/* Content View */
+
+.content-view-full .imageleft {
+    float: left;
+    margin-top: 5px;
+    margin-right: 20px;
+}
+
+.content-view-full .imageright {
+    float: right;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.content-view-full a img {
+    vertical-align: middle;
+}
+
+/* Folder */
+
+/* Gallery */
+.content-view-full .class-gallery {
+}
+.content-view-full .class-gallery td {
+    padding: 0px 5px 10px 5px;
+    vertical-align: top;
+}
+.content-view-full .content-view-galleryline {
+    text-align: center;
+}
+
+/* Folder List */
+
+.content-view-full .content-view-children {
+}
+
+.content-view-full .content-view-line {
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid #000;
+}
+
+.content-view-full .content-view-line h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.content-view-full .content-view-line p {
+    margin: 0.25em 0em;
+}
+
+/* Pagenavigator */
+
+div.pagenavigator span.next {
+    display: block;
+    float: right;
+}
+
+div.pagenavigator span.previous {
+    display: block;
+    float: left;
+}
+
+div.pagenavigator span.pages {
+    display: block;
+    text-align: center;
+}

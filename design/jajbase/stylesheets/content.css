@@ -1,0 +1,36 @@
+#content-column .attribute-long p,
+#content-column .attribute-short p {
+    text-indent: 0em;
+}
+
+#content-column div.attribute-pdf,
+#content-column div.attribute-tipafriend,
+#content-column div.attribute-byline {
+    display: none;
+}
+
+#content-column .attribute-long h2 {
+    font-size: 14px;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+#content-column .attribute-long h3 {
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+}
+
+#content-column .attribute-long p {
+    margin: 0.3em 0em 1em 0em;
+}
+
+#content-column .attribute-long table td,
+#content-column .attribute-long table th {
+    padding: 0.2em 0.5em;
+}
+
+#content-column .attribute-long table td p,
+#content-column .attribute-long table th p {
+    margin: 0px;
+}
+
